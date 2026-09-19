@@ -1,0 +1,20 @@
+/* Стили страницы "Крамер". Общие поля, кнопки и карточка - в assets/style.css. */
+
+/* Строка "поле x + поле y = поле": поля и текст в один ряд, на узком экране переносятся */
+.equation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.equation input {
+  width: 5rem;
+  text-align: center;
+}
+
+/* Система уравнений: акцентная линия слева вместо фигурной скобки */
+.system {
+  padding-left: 1rem;
+  border-left: 3px solid var(--accent);
+}

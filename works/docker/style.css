@@ -1,0 +1,12 @@
+/* Стили страницы "Docker-образ". Общие цвета и карточка - в assets/style.css. */
+
+/* Блок с командой: моноширинный шрифт, длинная строка прокручивается вбок, а не ломает вёрстку */
+.code {
+  overflow-x: auto;
+  padding: 0.8rem 1rem;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-size: 0.95rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}

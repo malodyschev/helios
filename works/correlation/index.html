@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Заголовок перезапишет скрипт задания: в title кладётся результат -->
+  <title>Корреляция</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="../../assets/works.js" defer></script>
+</head>
+<body data-work="correlation">
+  <header class="site-header">
+    <nav data-nav="site" aria-label="Навигация по сайту"></nav>
+  </header>
+
+  <main>
+    <h1>Корреляция</h1>
+    <h4 class="login">malodushev_m</h4>
+
+    <p>
+      Коэффициент Пирсона для списков A и B из адреса страницы: модуль,
+      отсечённый до трёх знаков без округления.
+    </p>
+
+    <section class="card">
+      <p class="result-label">|r| =</p>
+      <output class="result-value" id="result"></output>
+      <p class="example">
+        Пример: <a href="?A=55,33,44&amp;B=21,32,43">?A=55,33,44&amp;B=21,32,43</a> → 0.500
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <nav class="pager" data-nav="pager" aria-label="Соседние работы"></nav>
+  </footer>
+
+  <!-- Скрипт задания - без изменений, как сдан в web-scriptor -->
+  <script>
+    const qs = location.search.slice(1);
+
+    const bag = {};
+    qs.split('&').forEach(function (pair) {
+      const eq = pair.indexOf('=');
+      bag[pair.slice(0, eq)] = pair.slice(eq + 1);
+    });
+
+    const toNums = function (str) {
+      return (str || '').split(',').map(Number);
+    };
+
+    const xs = toNums(bag.A);
+    const ys = toNums(bag.B);
+
+    const mean = function (arr) {
+      return arr.reduce(function (s, v) { return s + v; }, 0) / arr.length;
+    };
+    const mx = mean(xs);
+    const my = mean(ys);
+
+    let cov = 0, sx = 0, sy = 0;
+    for (let i = 0; i < xs.length; i++) {
+      const dx = xs[i] - mx;
+      const dy = ys[i] - my;
+      cov += dx * dy;
+      sx  += dx * dx;
+      sy  += dy * dy;
+    }
+    const r = cov / Math.sqrt(sx * sy);
+
+    const m = Math.abs(r);
+    document.title = m >= 1 ? '1' : (Math.trunc(m * 1000) / 1000).toFixed(3);
+  </script>
+
+  <!-- Только для Гелиоса: показываем на странице тот же результат, что ушёл в title -->
+  <script>
+    document.getElementById('result').textContent = document.title;
+  </script>
+</body>
+</html>

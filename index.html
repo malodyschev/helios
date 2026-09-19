@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Malodushev</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Малодушев Михаил - портфолио</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/works.js" defer></script>
 </head>
 <body>
+  <header class="site-header">
+    <nav data-nav="site" aria-label="Навигация по сайту"></nav>
+  </header>
 
+  <main>
+    <section class="card hero">
+      <img class="avatar" src="images/photo.jpg" alt="Малодушев Михаил" width="640" height="640">
+      <div>
+        <h1>Малодушев Михаил Андреевич</h1>
+        <p class="lead">Магистрант ИТМО, программа «Веб-технологии»</p>
+        <ul class="tags">
+          <li>Группа P4103</li>
+          <li>ИСУ 564064</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="card-grid">
+      <section class="card">
+        <h2>Работы по курсу</h2>
+        <p class="lead">ВЕБЭКО26 - «Исследование экосистем веб-языков»</p>
+        <ol class="works-list" data-nav="list"></ol>
+      </section>
+
+      <section class="card">
+        <h2>Контакты</h2>
+        <ul class="contacts">
+          <li>
+            <a class="contact" href="https://t.me/malodushevv">
+              <span class="contact-label">Telegram</span>
+              <span class="contact-value">@malodushevv</span>
+            </a>
+          </li>
+          <li>
+            <a class="contact" href="mailto:mishah238@gmail.com">
+              <span class="contact-label">Почта</span>
+              <span class="contact-value">mishah238@gmail.com</span>
+            </a>
+          </li>
+          <li>
+            <a class="contact" href="https://github.com/malodyschev">
+              <span class="contact-label">GitHub</span>
+              <span class="contact-value">malodyschev</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
 </body>
 </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Крамер</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="../../assets/works.js" defer></script>
+</head>
+<body data-work="cramer">
+  <header class="site-header">
+    <nav data-nav="site" aria-label="Навигация по сайту"></nav>
+  </header>
+
+  <main>
+    <h1>Метод Крамера</h1>
+    <h4 class="login">malodushev_m</h4>
+
+    <p>Решение системы двух линейных уравнений с двумя неизвестными.</p>
+
+    <section class="card" aria-label="Калькулятор">
+      <div class="system">
+        <p class="equation">
+          <input id="n1" value="2" aria-label="Коэффициент при x, уравнение 1"> x +
+          <input id="n2" value="3" aria-label="Коэффициент при y, уравнение 1"> y =
+          <input id="n3" value="18" aria-label="Свободный член, уравнение 1">
+        </p>
+        <p class="equation">
+          <input id="n4" value="4" aria-label="Коэффициент при x, уравнение 2"> x +
+          <input id="n5" value="-5" aria-label="Коэффициент при y, уравнение 2"> y =
+          <input id="n6" value="-8" aria-label="Свободный член, уравнение 2">
+        </p>
+      </div>
+
+      <p><button id="bt">Вычислить!</button></p>
+
+      <p class="equation">
+        x = <input id="result1" readonly>
+        y = <input id="result2" readonly>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <nav class="pager" data-nav="pager" aria-label="Соседние работы"></nav>
+  </footer>
+
+  <script>
+    // Элементы с id доступны как глобальные переменные (bt, n1...) - так было в исходном задании
+    bt.onclick = () => {
+      const [a1, b1, c1, a2, b2, c2] =
+        [n1, n2, n3, n4, n5, n6].map(el => Number(el.value));
+
+      // Главный определитель и определители для x и y
+      const d  = a1 * b2 - b1 * a2;
+      const dx = c1 * b2 - b1 * c2;
+      const dy = a1 * c2 - c1 * a2;
+
+      result1.value = dx / d;
+      result2.value = dy / d;
+    };
+  </script>
+</body>
+</html>

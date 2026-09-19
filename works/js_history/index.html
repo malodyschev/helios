@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Родословная JavaScript</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="../../assets/works.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body data-work="js_history">
+  <header class="site-header">
+    <nav data-nav="site" aria-label="Навигация по сайту"></nav>
+  </header>
+
+  <main class="history">
+    <p class="eyebrow">Исследование экосистем веб-языков · задание 3</p>
+    <h1>Родословная JavaScript</h1>
+    <p class="thesis">
+      У JavaScript нет одного языка-предка. В 1995 году в нём сошлись <strong>четыре
+      независимые линии развития</strong>, которые до этого полвека росли порознь:
+      синтаксис, объекты, функции и типы. Отсюда его главная странность - язык
+      выглядит как C, а ведёт себя как Scheme с прототипами.
+    </p>
+
+    <section>
+      <h2>Четыре линии и точка их схождения</h2>
+      <p class="sub">
+        Подписаны только те стрелки, которые пересекают границу линии: именно они
+        объясняют, из чего собран язык. Выберите линию, чтобы проследить её отдельно,
+        или нажмите на любой язык - под схемой появится короткая справка о нём.
+      </p>
+
+      <div class="chips" role="group" aria-label="Фильтр по линиям">
+        <button class="chip" type="button" aria-pressed="true" data-ids="">Все линии</button>
+        <button class="chip" type="button" aria-pressed="false" data-lane="1"
+                data-ids="fortran algol bcpl c java e-fa e-ab e-bc e-cj e-java">Синтаксис</button>
+        <button class="chip" type="button" aria-pressed="false" data-lane="2"
+                data-ids="simula smalltalk self e-sisr e-srse e-self">Объекты</button>
+        <button class="chip" type="button" aria-pressed="false" data-lane="3"
+                data-ids="lisp scheme e-lisc e-scheme e-liml">Функции</button>
+        <button class="chip" type="button" aria-pressed="false" data-lane="4"
+                data-ids="ml ts e-liml e-mlts">Типы</button>
+      </div>
+
+      <figure>
+        <div class="scroller">
+          <svg id="tree" viewBox="0 0 1120 1010" role="img"
+               aria-label="Схема: четыре линии развития языков программирования - синтаксис, объекты, функции и типы - сходятся в JavaScript 1995 года, из которого вырастают ES2015 и TypeScript.">
+            <defs>
+              <marker id="m1" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M2.5,2.5 L8,6 L2.5,9.5" class="mkl ms1"/></marker>
+              <marker id="m2" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M2.5,2.5 L8,6 L2.5,9.5" class="mkl ms2"/></marker>
+              <marker id="m3" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M2.5,2.5 L8,6 L2.5,9.5" class="mkl ms3"/></marker>
+              <marker id="m4" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M2.5,2.5 L8,6 L2.5,9.5" class="mkl ms4"/></marker>
+              <marker id="mn" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M2.5,2.5 L8,6 L2.5,9.5" class="mkl msn"/></marker>
+            </defs>
+
+            <!-- цветные колонки линий -->
+            <rect class="band bd1" x="12"  y="76" width="274" height="632" rx="12"/>
+            <rect class="band bd2" x="286" y="76" width="274" height="632" rx="12"/>
+            <rect class="band bd3" x="560" y="76" width="274" height="632" rx="12"/>
+            <rect class="band bd4" x="834" y="76" width="274" height="632" rx="12"/>
+
+            <g class="g node" style="--i:0">
+              <rect class="pro-box" x="24" y="14" width="1072" height="48" rx="7"/>
+              <text class="pro-tag" x="40" y="34">До языков программирования</text>
+              <text class="pro-txt" x="40" y="52">мышление → естественный язык → письменность → искусственные языки → формальные системы → λ-исчисление</text>
+            </g>
+
+            <g class="g node" style="--i:1">
+              <text class="lane l1" x="24" y="104">Синтаксис</text>
+              <line class="ruleline rule1" x1="24" y1="116" x2="274" y2="116"/>
+            </g>
+            <g class="g node" style="--i:1">
+              <text class="lane l2" x="298" y="104">Объекты</text>
+              <line class="ruleline rule2" x1="298" y1="116" x2="548" y2="116"/>
+            </g>
+            <g class="g node" style="--i:1">
+              <text class="lane l3" x="572" y="104">Функции</text>
+              <line class="ruleline rule3" x1="572" y1="116" x2="822" y2="116"/>
+            </g>
+            <g class="g node" style="--i:1">
+              <text class="lane l4" x="846" y="104">Типы</text>
+              <line class="ruleline rule4" x1="846" y1="116" x2="1096" y2="116"/>
+            </g>
+
+            <!-- линия 1 -->
+            <g class="g node clickable" id="fortran" role="button" tabindex="0" style="--i:2">
+              <rect class="node-card c1" x="24" y="124" width="250" height="56" rx="7"/>
+              <text class="name" x="42" y="147">FORTRAN <tspan class="yr y1">· 1957</tspan></text>
+              <text class="gloss" x="42" y="166">формулы вместо машинных команд</text>
+              <text class="more m1" x="256" y="160" text-anchor="end">→</text>
+            </g>
+            <g class="g link" id="e-fa" style="--i:2"><path class="ln s1" pathLength="1" d="M149,180 L149,204" marker-end="url(#m1)"/></g>
+
+            <g class="g node clickable" id="algol" role="button" tabindex="0" style="--i:3">
+              <rect class="node-card c1" x="24" y="210" width="250" height="56" rx="7"/>
+              <text class="name" x="42" y="233">ALGOL <tspan class="yr y1">· 1958</tspan></text>
+              <text class="gloss" x="42" y="252">код делится на вложенные блоки</text>
+              <text class="more m1" x="256" y="246" text-anchor="end">→</text>
+            </g>
+            <g class="g link" id="e-ab" style="--i:3"><path class="ln s1" pathLength="1" d="M149,266 L149,290" marker-end="url(#m1)"/></g>
+
+            <g class="g node clickable" id="bcpl" role="button" tabindex="0" style="--i:4">
+              <rect class="node-card c1" x="24" y="296" width="250" height="56" rx="7"/>
+              <text class="name" x="42" y="319">BCPL <tspan class="yr y1">· 1967</tspan></text>
+              <text class="gloss" x="42" y="338">блок задаётся фигурными скобками</text>
+              <text class="more m1" x="256" y="332" text-anchor="end">→</text>
+            </g>
+            <g class="g link" id="e-bc" style="--i:4"><path class="ln s1" pathLength="1" d="M149,352 L149,376" marker-end="url(#m1)"/></g>
+
+            <g class="g node clickable" id="c" role="button" tabindex="0" style="--i:5">
+              <rect class="node-card c1" x="24" y="382" width="250" height="56" rx="7"/>
+              <text class="name" x="42" y="405">C <tspan class="yr y1">· 1972</tspan></text>
+              <text class="gloss" x="42" y="424">привычная запись выражений</text>
+              <text class="more m1" x="256" y="418" text-anchor="end">→</text>
+            </g>
+            <g class="g link" id="e-cj" style="--i:5"><path class="ln s1" pathLength="1" d="M149,438 L149,634" marker-end="url(#m1)"/></g>
+
+            <g class="g node clickable" id="java" role="button" tabindex="0" style="--i:8">
+              <rect class="node-card c1" x="24" y="640" width="250" height="56" rx="7"/>
+              <text class="name" x="42" y="663">Java <tspan class="yr y1">· 1995</tspan></text>
+              <text class="gloss" x="42" y="682">отсюда имя языка и Date</text>
+              <text class="more m1" x="256" y="676" text-anchor="end">→</text>
+            </g>
+
+            <!-- линия 2 -->
+            <g class="g node clickable" id="simula" role="button" tabindex="0" style="--i:4">
+              <rect class="node-card c2" x="298" y="296" width="250" height="56" rx="7"/>
+              <text class="name" x="316" y="319">Simula <tspan class="yr y2">· 1967</tspan></text>
+              <text class="gloss" x="316" y="338">класс как шаблон объекта</text>
+              <text class="more m2" x="530" y="332" text-anchor="end">→</text>
+            </g>
+            <g class="g link" id="e-sisr" style="--i:4"><path class="ln s2" pathLength="1" d="M423,352 L423,462" marker-end="url(#m2)"/></g>
+
+            <g class="g node clickable" id="smalltalk" role="button" tabindex="0" style="--i:6">
+              <rect class="node-card c2" x="298" y="468" width="250" height="56" rx="7"/>
+              <text class="name" x="316" y="491">Smalltalk <tspan class="yr y2">· 1980</tspan></text>
+              <text class="gloss" x="316" y="510">метод ищется во время вызова</text>
+              <text class="more m2" x="530" y="504" text-anchor="end">→</text>
+            </g>
+            <g class="g link" id="e-srse" style="--i:6"><path class="ln s2" pathLength="1" d="M423,524 L423,548" marker-end="url(#m2)"/></g>
+
+            <g class="g node clickable" id="self" role="button" tabindex="0" style="--i:7">
+              <rect class="node-card c2" x="298" y="554" width="250" height="56" rx="7"/>
+              <text class="name" x="316" y="577">Self <tspan class="yr y2">· 1987</tspan></text>
+              <text class="gloss" x="316" y="596">объект наследует от объекта</text>
+              <text class="more m2" x="530" y="590" text-anchor="end">→</text>
+            </g>
+
+            <!-- линия 3 -->
+            <g class="g node clickable" id="lisp" role="button" tabindex="0" style="--i:2">
+              <rect class="node-card c3" x="572" y="124" width="250" height="56" rx="7"/>
+              <text class="name" x="590" y="147">Lisp <tspan class="yr y3">· 1958</tspan></text>
+              <text class="gloss" x="590" y="166">GC, динамика, eval, typeof</text>
+              <text class="more m3" x="804" y="160" text-anchor="end">→</text>
+            </g>
+            <g class="g link" id="e-lisc" style="--i:2"><path class="ln s3" pathLength="1" d="M697,180 L697,376" marker-end="url(#m3)"/></g>
+
+            <g class="g node clickable" id="scheme" role="button" tabindex="0" style="--i:5">
+              <rect class="node-card c3" x="572" y="382" width="250" height="56" rx="7"/>
+              <text class="name" x="590" y="405">Scheme <tspan class="yr y3">· 1975</tspan></text>
+              <text class="gloss" x="590" y="424">функция помнит, где была создана</text>
+              <text class="more m3" x="804" y="418" text-anchor="end">→</text>
+            </g>
+
+            <!-- линия 4 -->
+            <g class="g link" id="e-liml" style="--i:3">
+              <path class="ln s3 dashline" d="M822,152 H931 Q971,152 971,192 V376" marker-end="url(#m3)"/>
+              <text class="gloss" x="838" y="144">строгая типизация функций</text>
+            </g>
+            <g class="g node clickable" id="ml" role="button" tabindex="0" style="--i:5">
+              <rect class="node-card c4" x="846" y="382" width="250" height="56" rx="7"/>
+              <text class="name" x="864" y="405">ML <tspan class="yr y4">· 1973</tspan></text>
+              <text class="gloss" x="864" y="424">вывод типов и полиморфизм</text>
+              <text class="more m4" x="1078" y="418" text-anchor="end">→</text>
+            </g>
+
+            <!-- схождение -->
+            <g class="g link" id="e-java" style="--i:9">
+              <path class="ln s1 thick" pathLength="1" d="M149,696 C149,728 185,726 185,758" marker-end="url(#m1)"/>
+              <text class="edge" x="199" y="744">имя языка и объект Date</text>
+            </g>
+            <g class="g link" id="e-self" style="--i:9">
+              <path class="ln s2 thick" pathLength="1" d="M423,610 L423,758" marker-end="url(#m2)"/>
+              <text class="edge" x="437" y="744">прототипы, делегирование</text>
+            </g>
+            <g class="g link" id="e-scheme" style="--i:9">
+              <path class="ln s3 thick" pathLength="1" d="M697,438 C697,702 655,714 655,758" marker-end="url(#m3)"/>
+              <text class="edge" x="669" y="744">замыкания и функции-значения</text>
+            </g>
+
+            <g class="g node clickable" id="js" role="button" tabindex="0" style="--i:10">
+              <rect class="hero-box" x="24" y="766" width="798" height="94" rx="9"/>
+              <text class="hero-name" x="46" y="800">JavaScript · 1995</text>
+              <text class="hero-sub" x="46" y="822">Netscape, весна 1995 года; по словам Брендана Айка, прототип занял десять дней</text>
+              <text class="hero-punch" x="46" y="846">function из C-традиции создаёт объект с прототипом Self и замыканием Scheme</text>
+              <text class="more mjs" x="800" y="800" text-anchor="end">→</text>
+            </g>
+
+            <g class="g link" id="e-jses" style="--i:11">
+              <path class="ln sn" pathLength="1" d="M423,860 L423,886" marker-end="url(#mn)"/>
+            </g>
+            <g class="g node clickable" id="es" role="button" tabindex="0" style="--i:11">
+              <rect class="es-box" x="24" y="892" width="798" height="88" rx="9"/>
+              <text class="name" x="46" y="920">ES2015 <tspan class="yr yjs">· поворотная точка</tspan></text>
+              <text class="gloss" x="46" y="942">let / const, модули, Promise, class, Proxy и Reflect</text>
+              <text class="gloss" x="46" y="964">ES2017: async / await - Promise без цепочки then</text>
+              <text class="more mjs" x="800" y="920" text-anchor="end">→</text>
+            </g>
+
+            <g class="g link" id="e-jsts" style="--i:11">
+              <path class="ln sn" pathLength="1" d="M822,802 H864 Q900,802 900,838 V886" marker-end="url(#mn)"/>
+              <text class="gloss" x="830" y="794">плюс проверка типов</text>
+            </g>
+            <g class="g link" id="e-mlts" style="--i:10">
+              <path class="ln s4 thick" pathLength="1" d="M1060,438 L1060,886" marker-end="url(#m4)"/>
+              <text class="edge" x="1048" y="744" text-anchor="end">вывод типов,</text>
+              <text class="edge" x="1048" y="760" text-anchor="end">обобщения, типы-суммы</text>
+            </g>
+            <g class="g node clickable" id="ts" role="button" tabindex="0" style="--i:11">
+              <rect class="ts-box" x="846" y="892" width="250" height="88" rx="9"/>
+              <text class="name" x="864" y="920">TypeScript <tspan class="yr y4">· 2012</tspan></text>
+              <text class="gloss" x="864" y="942">типы проверяются до запуска,</text>
+              <text class="gloss" x="864" y="960">в рантайме их не существует</text>
+              <text class="more m4" x="1078" y="920" text-anchor="end">→</text>
+            </g>
+          </svg>
+        </div>
+
+        <figcaption>
+          <span>Сплошная стрелка - прямая преемственность</span>
+          <span>Пунктир - влияние идеи без прямого заимствования</span>
+          <span>Толстая - то, из чего собран сам JavaScript</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Проверка по конструкциям</h2>
+      <p class="sub">
+        Та же схема, прочитанная в обратную сторону: берём конструкцию языка и ищем,
+        откуда она взялась. Наведите на строку - соответствующий участок схемы
+        подсветится. Последние две строки показывают, что линии не обрываются в 1995
+        году: старые идеи возвращаются в язык через ES2015.
+      </p>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>Конструкция</th><th>Источник</th><th>Что именно унаследовано</th></tr>
+          </thead>
+          <tbody>
+            <tr data-ids="bcpl c e-bc e-cj js">
+              <td class="feat"><code>{ }</code>, <code>;</code>, <code>for</code>, <code>if</code></td>
+              <td class="src"><span class="k1">BCPL → C</span> <span class="when">1967-72</span></td>
+              <td>форма записи блока и большинство операторов</td>
+            </tr>
+            <tr data-ids="java js e-java">
+              <td class="feat">Название, объект <code>Date</code></td>
+              <td class="src"><span class="k1">Java</span> <span class="when">1995</span></td>
+              <td>маркетинговое решение Netscape; <code>Date</code> скопирован с <code>java.util.Date</code></td>
+            </tr>
+            <tr data-ids="algol es">
+              <td class="feat"><code>let</code>, <code>const</code></td>
+              <td class="src"><span class="k1">ALGOL</span> <span class="when">1958</span></td>
+              <td>блочная область видимости - вернулась в язык только в ES2015</td>
+            </tr>
+            <tr data-ids="self js e-self">
+              <td class="feat">Прототипы, <code>Object.create</code></td>
+              <td class="src"><span class="k2">Self</span> <span class="when">1987</span></td>
+              <td>поиск свойства уходит вверх по цепочке объектов</td>
+            </tr>
+            <tr data-ids="scheme js e-scheme">
+              <td class="feat">Замыкания; функцию можно вернуть из функции</td>
+              <td class="src"><span class="k3">Scheme</span> <span class="when">1975</span></td>
+              <td>область видимости задаётся текстом программы, а не вызовом</td>
+            </tr>
+            <tr data-ids="lisp js">
+              <td class="feat">GC, <code>typeof</code>, <code>eval</code></td>
+              <td class="src"><span class="k3">Lisp</span> <span class="when">1958</span></td>
+              <td>динамическая типизация, автоматическая память, рефлексия</td>
+            </tr>
+            <tr data-ids="ml ts e-mlts">
+              <td class="feat">Generics, union-типы, вывод</td>
+              <td class="src"><span class="k4">ML</span> <span class="when">1973</span></td>
+              <td>попадает не в JS, а сразу в TypeScript</td>
+            </tr>
+            <tr data-ids="simula es">
+              <td class="feat"><code>class</code>, <code>extends</code></td>
+              <td class="src"><span class="k2">Simula</span> <span class="when">1967</span></td>
+              <td>нотация вернулась в ES2015, но объектная модель осталась прежней</td>
+            </tr>
+            <tr data-ids="lisp es">
+              <td class="feat"><code>Proxy</code>, <code>Reflect</code></td>
+              <td class="src"><span class="k3">Lisp</span> <span class="when">1958</span></td>
+              <td>рефлексия вернулась в ES2015 как явные метаоперации</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Ветви, которые не выжили</h2>
+      <p class="sub">
+        Родословная показывает то, что дошло до нас. Не менее показательно, что не
+        дошло: у ядра ECMAScript были другие реализации, а у самого браузерного
+        программирования - другие претенденты.
+      </p>
+      <ul class="dead">
+        <li>
+          <span class="who">Java-апплеты</span>
+          <span class="when">1995 → 2017</span>
+          <span class="why">Компилируемый код внутри страницы. Апплет нельзя было править
+          прямо в разметке - его требовалось сначала откомпилировать и подключить файлом.</span>
+        </li>
+        <li>
+          <span class="who">ActionScript</span>
+          <span class="when">эпоха Flash, до 2020</span>
+          <span class="why">Полноценная реализация ядра ECMAScript: классы и модули были в нём
+          задолго до ES2015. Остался проприетарным и ушёл вместе с Flash.</span>
+        </li>
+        <li>
+          <span class="who">JScript и VBScript</span>
+          <span class="when">1996 → 2015</span>
+          <span class="why">Реализация Microsoft в Internet Explorer. Через ActiveX и Windows
+          Scripting Host управляла не только страницей, но и операционной системой.</span>
+        </li>
+        <li>
+          <span class="who">Silverlight и JavaFX</span>
+          <span class="when">2007 →</span>
+          <span class="why">Попытки вернуть «обогащённые интерфейсы» через плагин к браузеру.
+          В вебе не закрепились.</span>
+        </li>
+      </ul>
+      <p class="verdict">
+        Все четыре проиграли одному нововведению - <strong>HTML5</strong>. Туда ушли
+        анимация, поддержка медиа и богатые элементы интерфейса, и ниша плагина
+        исчезла вместе с причиной его ставить.
+      </p>
+    </section>
+
+    <p class="note">
+      За кадром оставлено то, что встречается в отдельных изложениях, но не входит
+      в общепринятое ядро родословной: латинское происхождение служебных слов, проект универсального языка
+      Уилкинса и characteristica universalis Лейбница, C++ как промежуточное звено между
+      Simula и Java. Материал по тупиковым ветвям и по срокам создания прототипа - из
+      лекций курса; остальное сверено с интервью Брендана Айка и спецификацией ECMA-262.
+    </p>
+  </main>
+
+  <div class="pop" id="detail" role="dialog" aria-label="Справка о языке" hidden>
+    <button class="pop-x" type="button" id="d-close" aria-label="Закрыть">&times;</button>
+    <h3 class="d-name" id="d-name"></h3>
+    <p class="d-meta" id="d-meta"></p>
+    <p class="d-text" id="d-text"></p>
+  </div>
+
+  <footer>
+    <nav class="pager" data-nav="pager" aria-label="Соседние работы"></nav>
+  </footer>
+</body>
+</html>

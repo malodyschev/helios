@@ -1,0 +1,559 @@
+/* Стили страницы "Родословная JavaScript": схема на SVG, фильтры, таблица, всплывающая справка.
+   Фон, текст, рамки и шрифт берутся из общего assets/style.css. */
+
+:root {
+  /* Цвета четырёх линий развития и их светлые подложки для подсветки карточек */
+  --lane1: #2f5fa8;
+  --lane2: #a4571f;
+  --lane3: #6a4f9c;
+  --lane4: #1c6b51;
+  --h1: #e6eefb;
+  --h2: #fbeee1;
+  --h3: #f0ebfa;
+  --h4: #e2f1eb;
+
+  --js: #876500;
+  --js-fill: #fdf6e0;
+  --ts-fill: #eef4f1;
+
+  --mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+/* ---------- Текст ---------- */
+
+.eyebrow {
+  margin: 0 0 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.history h1 {
+  font-size: clamp(2rem, 4.6vw, 3rem);
+  letter-spacing: -0.02em;
+}
+
+.thesis {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.history h2 {
+  margin-bottom: 0.4rem;
+  font-size: 1.5rem;
+}
+
+.sub {
+  margin: 0 0 1.4rem;
+  color: var(--muted);
+}
+
+.history section {
+  margin-top: 3.5rem;
+}
+
+/* ---------- Фильтры по линиям ---------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
+
+.chip {
+  padding: 0.45rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.chip:hover {
+  color: var(--text);
+  filter: none;
+}
+
+.chip[aria-pressed="true"] {
+  font-weight: 600;
+  color: var(--text);
+  border-color: currentColor;
+}
+
+.chip[data-lane="1"][aria-pressed="true"] { color: var(--lane1); }
+.chip[data-lane="2"][aria-pressed="true"] { color: var(--lane2); }
+.chip[data-lane="3"][aria-pressed="true"] { color: var(--lane3); }
+.chip[data-lane="4"][aria-pressed="true"] { color: var(--lane4); }
+
+/* ---------- Схема ---------- */
+
+figure {
+  margin: 0;
+}
+
+/* На узком экране схема не сжимается до нечитаемого, а прокручивается вбок */
+.scroller {
+  overflow-x: auto;
+  padding: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.scroller svg {
+  display: block;
+  width: 100%;
+  min-width: 1000px;
+  height: auto;
+}
+
+figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+figcaption span {
+  white-space: nowrap;
+}
+
+/* Колонки линий и их заголовки */
+.band { opacity: 0.06; }
+.bd1 { fill: var(--lane1); }
+.bd2 { fill: var(--lane2); }
+.bd3 { fill: var(--lane3); }
+.bd4 { fill: var(--lane4); }
+
+.lane {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.l1 { fill: var(--lane1); }
+.l2 { fill: var(--lane2); }
+.l3 { fill: var(--lane3); }
+.l4 { fill: var(--lane4); }
+
+.ruleline { stroke-width: 3; }
+.rule1 { stroke: var(--lane1); }
+.rule2 { stroke: var(--lane2); }
+.rule3 { stroke: var(--lane3); }
+.rule4 { stroke: var(--lane4); }
+
+/* Карточка языка на схеме */
+.node-card {
+  fill: var(--surface);
+  stroke-width: 1.4;
+  transition: fill 0.15s, stroke-width 0.15s;
+}
+
+.c1 { stroke: var(--lane1); }
+.c2 { stroke: var(--lane2); }
+.c3 { stroke: var(--lane3); }
+.c4 { stroke: var(--lane4); }
+
+.name {
+  font-size: 14.5px;
+  font-weight: 600;
+  fill: var(--text);
+}
+
+.yr {
+  font-family: var(--mono);
+  font-size: 11.5px;
+}
+
+.y1 { fill: var(--lane1); }
+.y2 { fill: var(--lane2); }
+.y3 { fill: var(--lane3); }
+.y4 { fill: var(--lane4); }
+.yjs { fill: var(--js); }
+
+.gloss {
+  font-size: 11.5px;
+  fill: var(--muted);
+}
+
+/* Стрелка "подробнее" появляется при наведении на карточку */
+.more {
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.m1 { fill: var(--lane1); }
+.m2 { fill: var(--lane2); }
+.m3 { fill: var(--lane3); }
+.m4 { fill: var(--lane4); }
+.mjs { fill: var(--js); }
+
+.clickable { cursor: pointer; }
+.clickable:focus { outline: none; }
+.clickable:hover .more,
+.clickable:focus .more { opacity: 0.85; }
+.clickable:hover .node-card,
+.clickable:focus .node-card { stroke-width: 2.4; }
+
+.clickable:hover .c1, .clickable:focus .c1, .g.sel .c1 { fill: var(--h1); }
+.clickable:hover .c2, .clickable:focus .c2, .g.sel .c2 { fill: var(--h2); }
+.clickable:hover .c3, .clickable:focus .c3, .g.sel .c3 { fill: var(--h3); }
+.clickable:hover .c4, .clickable:focus .c4, .g.sel .c4 { fill: var(--h4); }
+
+.clickable:hover .hero-box,
+.clickable:focus .hero-box,
+.clickable:hover .es-box,
+.clickable:focus .es-box,
+.clickable:hover .ts-box,
+.clickable:focus .ts-box { stroke-width: 3; }
+
+.g.sel .node-card { stroke-width: 2.8; }
+
+/* Стрелки между языками */
+.ln {
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.s1 { stroke: var(--lane1); }
+.s2 { stroke: var(--lane2); }
+.s3 { stroke: var(--lane3); }
+.s4 { stroke: var(--lane4); }
+.sn { stroke: var(--muted); }
+.thick { stroke-width: 2.8; }
+.dashline { stroke-dasharray: 6 5; }
+
+/* Наконечники стрелок (<marker>) */
+.mkl {
+  fill: none;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ms1 { stroke: var(--lane1); }
+.ms2 { stroke: var(--lane2); }
+.ms3 { stroke: var(--lane3); }
+.ms4 { stroke: var(--lane4); }
+.msn { stroke: var(--muted); }
+
+.edge {
+  font-size: 11.5px;
+  font-weight: 500;
+  fill: var(--text);
+}
+
+/* Верхняя плашка "До языков программирования" */
+.pro-box {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1.2;
+  stroke-dasharray: 5 4;
+}
+
+.pro-tag {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  fill: var(--muted);
+}
+
+.pro-txt {
+  font-size: 12.5px;
+  fill: var(--muted);
+}
+
+/* Блоки JavaScript, ES2015 и TypeScript внизу схемы */
+.hero-box {
+  fill: var(--js-fill);
+  stroke: var(--js);
+  stroke-width: 2;
+  transition: stroke-width 0.15s;
+}
+
+.hero-name {
+  font-size: 21px;
+  font-weight: 700;
+  fill: var(--text);
+}
+
+.hero-sub {
+  font-size: 12.5px;
+  fill: var(--muted);
+}
+
+.hero-punch {
+  font-size: 13.5px;
+  font-weight: 500;
+  fill: var(--text);
+}
+
+.ts-box {
+  fill: var(--ts-fill);
+  stroke: var(--lane4);
+  stroke-width: 1.8;
+  transition: stroke-width 0.15s;
+}
+
+.es-box {
+  fill: var(--surface);
+  stroke: var(--js);
+  stroke-width: 1.4;
+  transition: stroke-width 0.15s;
+}
+
+/* Подсветка: при выбранном фильтре всё, кроме помеченного .hot, притухает */
+.g { transition: opacity 0.2s ease; }
+#tree.focusing .g { opacity: 0.12; }
+#tree.focusing .g.hot { opacity: 1; }
+
+/* Появление схемы: карточки всплывают, стрелки прорисовываются по очереди (--i задан в разметке) */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+.g.node {
+  animation: rise 0.5s ease both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+.g.link .ln {
+  stroke-dasharray: 1;
+  animation: draw 0.55s ease both;
+  animation-delay: calc(120ms + var(--i, 0) * 70ms);
+}
+
+.g.link text {
+  animation: rise 0.4s ease both;
+  animation-delay: calc(400ms + var(--i, 0) * 70ms);
+}
+
+.g.link .dashline {
+  stroke-dasharray: 6 5;
+  animation: rise 0.5s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .g.node, .g.link .ln, .g.link text, .g.link .dashline { animation: none; }
+  .g, .node-card, .more { transition: none; }
+}
+
+/* ---------- Всплывающая справка о языке ---------- */
+
+.pop {
+  position: fixed;
+  z-index: 60;
+  width: min(390px, 92vw);
+  padding: 20px 22px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left-width: 5px;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 48px rgb(10 15 25 / 0.2), 0 2px 6px rgb(10 15 25 / 0.08);
+  animation: pop 0.17s ease;
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.97) translateY(5px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pop { animation: none; }
+}
+
+.pop[data-lane="1"] { border-left-color: var(--lane1); }
+.pop[data-lane="2"] { border-left-color: var(--lane2); }
+.pop[data-lane="3"] { border-left-color: var(--lane3); }
+.pop[data-lane="4"] { border-left-color: var(--lane4); }
+.pop[data-lane="js"] { border-left-color: var(--js); }
+
+.pop-x {
+  position: absolute;
+  top: 9px;
+  right: 11px;
+  padding: 2px 7px;
+  font-size: 23px;
+  line-height: 1;
+  color: var(--muted);
+  background: none;
+  border-radius: 7px;
+}
+
+.pop-x:hover {
+  color: var(--text);
+  filter: none;
+}
+
+.d-name {
+  margin: 0 26px 3px 0;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+}
+
+.d-meta {
+  margin: 0 0 11px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.d-text {
+  margin: 0;
+  line-height: 1.58;
+}
+
+/* ---------- Таблица конструкций ---------- */
+
+.tablewrap {
+  overflow-x: auto;
+  padding: 0.5rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 11px 14px 11px 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom-width: 2px;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+tbody tr {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+tbody tr:hover,
+tbody tr:focus-visible {
+  background: var(--bg);
+  outline: none;
+}
+
+tbody tr:focus-visible td:first-child {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+td:first-child {
+  padding-left: 10px;
+}
+
+td.src {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+td.src .when {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+td.feat code {
+  padding: 1px 5px;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.k1 { color: var(--lane1); }
+.k2 { color: var(--lane2); }
+.k3 { color: var(--lane3); }
+.k4 { color: var(--lane4); }
+
+/* ---------- Тупиковые ветви ---------- */
+
+.dead {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dead li {
+  padding-left: 14px;
+  border-left: 3px solid var(--border);
+}
+
+.dead .who {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.dead .when {
+  display: block;
+  margin-bottom: 5px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.dead .why {
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.verdict {
+  margin-top: 1.6rem;
+  padding: 18px 20px;
+  font-size: 1.05rem;
+  background: var(--js-fill);
+  border-left: 4px solid var(--js);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.note {
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
