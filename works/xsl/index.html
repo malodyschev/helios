@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XSL-преобразования</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script src="../../assets/works.js" defer></script>
+</head>
+<body data-work="xsl">
+  <header class="site-header">
+    <nav data-nav="site" aria-label="Навигация по сайту"></nav>
+  </header>
+
+  <main>
+    <h1>XSL-преобразования</h1>
+    <h4 class="login">malodushev_m</h4>
+
+    <div class="card-grid">
+      <section class="card">
+        <h2>Задание 1 · Sigma</h2>
+        <p>
+          Формула среднеквадратичного отклонения на выдуманном математическом языке
+          XSLT-шаблоном превращается в MathML, который браузер рисует сам.
+        </p>
+        <p class="button-row">
+          <a class="button-link button-link-outline" href="https://web-scriptor.ru/sigma.pdf">Ссылка на задание</a>
+          <a class="button-link" href="sigma/sigma.xml">Результат</a>
+        </p>
+        <p>
+          Исходники: <a href="sigma/sigma.xml">sigma.xml</a>, <a href="sigma/sigma.xsl">sigma.xsl</a>
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Задание 2 · SVG</h2>
+        <p>
+          XML-описание трёх эллипсов с кириллическими тегами браузер сам превращает в SVG
+          по XSLT-шаблону, подключённому через <code>&lt;?xml-stylesheet?&gt;</code>.
+        </p>
+        <p class="button-row">
+          <a class="button-link button-link-outline" href="https://web-scriptor.ru/svg.pdf">Ссылка на задание</a>
+          <a class="button-link" href="svg/svg.xml">Результат</a>
+        </p>
+        <p>
+          Исходники: <a href="svg/svg.xml">svg.xml</a>, <a href="svg/svg.xsl">svg.xsl</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <nav class="pager" data-nav="pager" aria-label="Соседние работы"></nav>
+  </footer>
+</body>
+</html>

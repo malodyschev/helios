@@ -11,6 +11,12 @@
       editor: 'https://web-scriptor.ru/g/a825a88',
     },
     {
+      // Условия двух подзаданий - на самой странице работы, решение у обоих одно
+      slug: 'xsl',
+      title: 'XSL-преобразования',
+      editor: 'https://web-scriptor.ru/g/xsl_intro',
+    },
+    {
       slug: 'docker',
       title: 'Docker-образ',
       task: 'https://node-server.ru/m/mod/forum/view.php?id=3982',
@@ -104,7 +110,7 @@
 
   // Кнопки посередине подвала: условие задания и выполненное задание, если ссылки заданы
   const createWorkLinks = (work) => {
-    const links = createElement('div', 'pager-links');
+    const links = createElement('div', 'button-row');
     if (work.task) links.append(createLink(work.task, 'Ссылка на задание', 'button-link button-link-outline'));
     if (work.editor) links.append(createLink(work.editor, 'Ссылка на выполненное задание', 'button-link'));
     return links;
