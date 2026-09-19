@@ -135,7 +135,6 @@ h2 {
   max-height: none;
   margin: 0;
   padding: 0;
-  display: flex;
   flex-direction: column;
   color: var(--text);
   background: var(--surface);
@@ -150,7 +149,10 @@ h2 {
     overlay 0.25s allow-discrete;
 }
 
+/* display: flex только у открытой панели. У закрытой браузер ставит display: none;
+   если перебить его всегда, скрытая панель останется на странице за левым краем */
 .sidebar:popover-open {
+  display: flex;
   translate: 0 0;
 }
 
@@ -267,6 +269,14 @@ h2 {
   font-size: clamp(2rem, 4vw, 2.8rem);
 }
 
+/* Текст занимает всё место справа от фото. Без этого длинный ряд стека не помещается рядом с фото
+   и весь блок переносится вниз; с flex: 1 переносятся сами плашки внутри блока.
+   Под фото текст уходит только на узком экране, когда ему остаётся меньше 20rem. */
+.hero > div {
+  flex: 1;
+  min-width: min(100%, 20rem);
+}
+
 /* object-fit: cover - фото заполняет круг без искажения пропорций */
 .avatar {
   width: 12rem;
@@ -291,6 +301,128 @@ h2 {
   color: var(--accent);
   background: var(--accent-soft);
   border-radius: 999px;
+}
+
+.hero-about {
+  margin-block: 0 1rem;
+}
+
+/* Стек: белые плашки с иконкой технологии в её фирменном цвете
+   (Go, Kafka, PostgreSQL - Simple Icons, CC0; остальные - цветные логотипы из Devicon, MIT) */
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Вторая строка стека - на том же расстоянии, что и плашки внутри строки */
+.stack + .stack {
+  margin-top: 0.5rem;
+}
+
+.stack li,
+.tech {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 500;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.stack li {
+  padding: 0.3rem 0.85rem 0.3rem 0.6rem;
+  font-size: 0.95rem;
+}
+
+.stack img {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Маленькая версия плашки стека - рядом с должностью */
+.tech {
+  margin-left: 0.3rem;
+  padding: 0.05rem 0.55rem 0.05rem 0.4rem;
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+
+.tech img {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+/* ---------- Опыт и образование ---------- */
+
+.about {
+  margin-bottom: 1.5rem;
+}
+
+.about h2:not(:first-child) {
+  margin-top: 2rem;
+}
+
+.timeline {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Логотип | должность и место | даты. На узком экране даты переносятся под текст */
+.timeline-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.timeline-item > div {
+  flex: 1;
+  min-width: 12rem;
+}
+
+.timeline-item p {
+  margin: 0;
+}
+
+.timeline-title {
+  font-weight: 600;
+}
+
+.timeline-place,
+.timeline-date {
+  color: var(--muted);
+}
+
+.timeline-date {
+  font-size: 0.95rem;
+}
+
+/* Логотипы: картинка из images/ или плашка с монограммой, цвет плашки задаётся классом организации */
+.logo {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  border-radius: 12px;
+}
+
+.logo-wb {
+  background: linear-gradient(135deg, #cb11ab, #481173);
 }
 
 /* Карточки сами раскладываются в столько колонок, сколько влезает, без медиазапросов */
